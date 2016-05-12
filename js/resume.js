@@ -1,5 +1,3 @@
-var work = [];
-
 var workHistory = [
   {
     company: 'Zipwhip, Inc',

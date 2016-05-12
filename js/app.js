@@ -1,3 +1,5 @@
+var work = [];
+
 function addWorkHistory(opts){
   this.company = opts.company;
   this.companyUrl = opts.companyUrl;
@@ -29,4 +31,45 @@ workHistory.forEach(function(ele) {
 
 work.forEach(function(a) {
   $('#work').append(a.toHtml());
+});
+
+function populateAbout() {
+  $('.navigation-options').on('click', '.about', function(e) {
+    e.preventDefault();
+    $('.about-me').show();
+  });
+}
+
+work.populateFilters = function() {
+  $('article').each(function() {
+    if(!$(this).hasClass('work-history')) {
+      var val = $(this).find('.work-company').text();
+      var optionTag = '<option value="' + val + '">' + val + '</option>';
+      $('#work-filter').append(optionTag);
+    }
+  });
+};
+
+work.handleJobFilter = function() {
+  $('#work-filter').on('change', function() {
+    if($(this).val()) {
+      $('article').hide();
+      // var filterValue = $(this).val();
+      // $('article').each(function() {
+      //   var currentArticle = $(this);
+        // console.log(currentArticle);
+    //     if (filterValue === currentArticle.attr()){
+    //       currentArticle.fadeIn();
+    //     }
+    //   });
+    // } else {
+      // $('article').fadeIn();
+    }
+  });
+};
+
+$(document).ready(function() {
+  work.populateFilters();
+  work.handleJobFilter();
+  populateAbout();
 });

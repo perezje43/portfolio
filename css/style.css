@@ -119,3 +119,11 @@ a {
 .links {
   padding: 0;
 }
+.hang-glide {
+  height: 600px;
+  width: 700px;
+}
+
+.about-me {
+  display: none;
+}
