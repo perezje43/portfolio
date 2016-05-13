@@ -10,18 +10,10 @@ function addWorkHistory(opts){
 }
 
 addWorkHistory.prototype.toHtml = function() {
-  var $newWork = $('.work-history').clone();
-
-  $newWork.find('h1').text(this.company);
-  $newWork.find('a').attr('href', this.companyUrl);
-  $newWork.find('.work-title').text(this.title);
-  $newWork.find('.start-date').text(this.startDate);
-  $newWork.find('.end-date').text(this.endDate);
-  $newWork.find('.work-duties').append(this.duties);
-
-  $newWork.append('<br>');
-  $newWork.removeClass('work-history');
-  return $newWork;
+  var $workTemplateScript = $('#resume-template').html();
+  var workTemplate = Handlebars.compile($workTemplateScript);
+  var compiledTemplate = workTemplate(this);
+  return compiledTemplate;
 };
 
 // adds work history into an array
@@ -36,7 +28,18 @@ work.forEach(function(a) {
 function populateAbout() {
   $('.navigation-options').on('click', '.about', function(e) {
     e.preventDefault();
-    $('.about-me').show();
+    $('article').hide();
+    $('.about-me').fadeIn();
+    console.log('hello');
+  });
+}
+
+function populateResume() {
+  $('.navigation-options').on('click', '.resume', function(e) {
+    e.preventDefault();
+    $('article').hide();
+    $('.work-history').fadeIn();
+    $('#work').fadeIn();
   });
 }
 
@@ -54,16 +57,10 @@ work.handleJobFilter = function() {
   $('#work-filter').on('change', function() {
     if($(this).val()) {
       $('article').hide();
-      // var filterValue = $(this).val();
-      // $('article').each(function() {
-      //   var currentArticle = $(this);
-        // console.log(currentArticle);
-    //     if (filterValue === currentArticle.attr()){
-    //       currentArticle.fadeIn();
-    //     }
-    //   });
-    // } else {
-      // $('article').fadeIn();
+      var filterValue = $(this).val();
+      $("[data-work = '" + filterValue + "']").fadeIn();
+    } else {
+      $('article').fadeIn();
     }
   });
 };
@@ -72,4 +69,5 @@ $(document).ready(function() {
   work.populateFilters();
   work.handleJobFilter();
   populateAbout();
+  populateResume();
 });

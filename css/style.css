@@ -46,27 +46,8 @@ a {
 }
 
 .hamburger {
-  height: 50px;
+  height: 40px;
   border-style: none;
-}
-
-@media only screen and (min-width: 640px) {
-  .hamburger{
-    display: none;
-  }
-  .navigation ul {
-    display: block;
-  }
-  .navigation-options li {
-    min-height: 100%;
-    background-color: #115B8C;
-    font-size: 20px;
-    color: white;
-    padding: 20px;
-  }
-  a {
-    color: white;
-  }
 }
 
 .profile {
@@ -76,6 +57,7 @@ a {
 
 .profile-photo {
   border-radius: 100%;
+  border: 2px solid;
   max-width: 100%;
 }
 
@@ -127,3 +109,22 @@ a {
 .about-me {
   display: none;
 }
+
+.work-history, #work {
+  display: none;
+}
+
+@media only screen and (min-width: 640px) {
+  .hamburger{
+    display: none;
+  }
+  .navigation ul {
+    display: block;
+  }
+  .navigation-options li {
+    min-height: 100%;
+    background-color: #115B8C;
+    font-size: 20px;
+    color: white;
+    padding: 20px;
+  }
