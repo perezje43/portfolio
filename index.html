@@ -2,12 +2,13 @@
 <html>
   <head>
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="css/icomoon/style.css" type="text/css">
     <link rel="stylesheet" href="css/style.css" type="text/css">
     <title>Jeremy Perez</title>
 
     <script id="resume-template" type="text/x-handlebars-template">
       <section class="resume" data-work="{{company}}">
-        <h1 class="work-company" data-work="work"><a href="{{companyUrl}}">{{company}}</a></h1>
+        <h1 class="work-company"><a href="{{companyUrl}}">{{company}}</a></h1>
         <p class="work-title">{{title}}</p>
         <p><span class="start-date">{{startDate}}</span><span class="end-date"> {{endDate}}</span></p>
         <ul class="work-duties">{{{duties}}}</ul>
@@ -21,26 +22,26 @@
     <nav class="navigation">
       <div class="hamburger">
         <img src="assets/hamburger.png" class="hamburger-menu"/>
+        <ul class="navigation-options">
+          <li class="home"><a href="index.html">Home</a></li>
+          <li class="about"><a href="#">About</a></li>
+          <li class="portfolio"><a href="#">Portfolio</a></li>
+          <li class="resume-tab"><a href="#">Resume</a></li>
+          <li class="empty-tab"></li>
+        </ul>
       </div>
-      <ul class="navigation-options">
-        <li class="home"><a href="index.html">Home</a></li>
-        <li class="about"><a href="#">About</a></li>
-        <li class="portfolio"><a href="#">Portfolio</a></li>
-        <li class="resume"><a href="#">Resume</a></li>
-      </ul>
     </nav>
 
     <article class="profile">
       <img src="assets/profile.jpg" class="profile-photo" />
       <h1 class="profile-name">Jeremy Perez</h1>
       <p class="profile-occupation"><em>Software Developer</em></p>
-      <ul class="links">
-        <li class="linkedin"><a href="https://www.linkedin.com/in/perezje"><img src="assets/458-linkedin.png" class="linkedin" /></a></li>
-        <li class="facebook"><a href="https://www.facebook.com/jeremy.perez.505"><img src="assets/402-facebook2.png" class="facebook" /></a></li>
-        <li class="gmail"><img src="assets/gmail-icon1.jpg" class="email" /></li>
-        <li class="twitter"><img src="assets/407-twitter.png" class="twitter"/></li>
-        <li class="github"><a href="https://github.com/perezje43"><img src="assets/433-github.png" class="github" /></a></li>
-      </ul>
+      <div>
+        <a class="icon-linkedin" href="https://www.linkedin.com/in/perezje"></a><a class="icon-facebook2" href="https://www.facebook.com/jeremy.perez.505"></a>
+        <a class="icon-mail4" href=""></a>
+        <a class="icon-twitter" href="#"></a>
+        <a class="icon-github" href="https://github.com/perezje43"></a>
+      </div>
     </article>
 
     <article class="about-me">
