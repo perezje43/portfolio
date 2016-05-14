@@ -1,12 +1,7 @@
 var work = [];
 
-function addWorkHistory(opts){
-  this.company = opts.company;
-  this.companyUrl = opts.companyUrl;
-  this.title = opts.title;
-  this.startDate = opts.startDate;
-  this.endDate = opts.endDate;
-  this.duties = opts.duties;
+function addWorkHistory(ele) {
+  for (key in ele) this[key] = ele[key];
 }
 
 addWorkHistory.prototype.toHtml = function() {
@@ -25,6 +20,28 @@ work.forEach(function(a) {
   $('#work').append(a.toHtml());
 });
 
+var workView = {};
+
+workView.populateFilters = function() {
+  $('.resume').each(function() {
+    var val = $(this).find('.work-company').text();
+    var optionTag = '<option value="' + val + '">' + val + '</option>';
+    $('#work-filter').append(optionTag);
+  });
+};
+
+workView.handleJobFilter = function() {
+  $('#work-filter').on('change', function() {
+    if($(this).val()) {
+      $('#work section').hide();
+      var filterValue = $(this).val();
+      $("[data-work = '" + filterValue + "']").fadeIn();
+    } else {
+      $('#work section').fadeIn();
+    }
+  });
+};
+
 function populateAbout() {
   $('.navigation-options').on('click', '.about', function(e) {
     e.preventDefault();
@@ -35,7 +52,7 @@ function populateAbout() {
 }
 
 function populateResume() {
-  $('.navigation-options').on('click', '.resume', function(e) {
+  $('.navigation-options').on('click', '.resume-tab', function(e) {
     e.preventDefault();
     $('article').hide();
     $('.work-history').fadeIn();
@@ -43,31 +60,9 @@ function populateResume() {
   });
 }
 
-work.populateFilters = function() {
-  $('article').each(function() {
-    if(!$(this).hasClass('work-history')) {
-      var val = $(this).find('.work-company').text();
-      var optionTag = '<option value="' + val + '">' + val + '</option>';
-      $('#work-filter').append(optionTag);
-    }
-  });
-};
-
-work.handleJobFilter = function() {
-  $('#work-filter').on('change', function() {
-    if($(this).val()) {
-      $('article').hide();
-      var filterValue = $(this).val();
-      $("[data-work = '" + filterValue + "']").fadeIn();
-    } else {
-      $('article').fadeIn();
-    }
-  });
-};
-
 $(document).ready(function() {
-  work.populateFilters();
-  work.handleJobFilter();
   populateAbout();
   populateResume();
+  workView.populateFilters();
+  workView.handleJobFilter();
 });
