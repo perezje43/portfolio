@@ -4,7 +4,6 @@ body {
 
 a {
   text-decoration: none;
-  color: white;
 }
 
 .navigation {
@@ -28,7 +27,7 @@ a {
   position: fixed;
   list-style: none;
   margin: 0;
-  width: 90%;
+  width: 80%;
   height: 100%;
   right: 0;
 }
@@ -80,43 +79,6 @@ li.empty-tab {
   text-align: center;
 }
 
-.twitter {
-  height: 28px;
-  width: 28px;
-  color: #55ACEE;
-  padding: 2px;
-  margin: 0;
-  border-radius: 5px;
-}
-
-.email {
-  height: 32px;
-  width: 32px;
-  margin: 0;
-  border-radius: 5px;
-}
-
-.facebook {
-  height: 32px;
-  width: 32px;
-  margin: 0;
-  border-radius: 5px;
-}
-
-.links li {
-  list-style: none;
-  display: inline-block;
-  text-align: center;
-}
-
-.links {
-  padding: 0;
-}
-.hang-glide {
-  height: 600px;
-  width: 700px;
-}
-
 .about-me {
   display: none;
 }
@@ -126,8 +88,22 @@ li.empty-tab {
 }
 
 @media only screen and (min-width: 640px) {
+  .profile {
+    padding-top: 100px;
+  }
+  .profile-photo {
+    float: left;
+    vertical-align: middle;
+  }
+  .profile-description {
+    float: right;
+    vertical-align: middle;
+  }
   .hamburger-menu{
     display: none;
+  }
+  .navigation {
+    position: fixed;
   }
   .navigation-options {
     display: inline;
