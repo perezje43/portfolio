@@ -1,5 +1,5 @@
 function resumeJobs(ele) {
-  for (key in ele) this[key] = ele[key];
+  for (keys in ele) this[keys] = ele[keys];
 }
 
 resumeJobs.all = [];
@@ -12,9 +12,9 @@ resumeJobs.prototype.toHtml = function() {
 };
 
 // adds work history into an array
-resumeJobs.loadAll = function(dataPassedIn) {
-  dataPassedIn.forEach(function(ele) {
-    resumeJobs.all.push(new resumeJobs(ele));
+resumeJobs.loadAll = function(dataForJob) {
+  resumeJobs.all = dataForJob.map(function(objectInstanceInArray) {
+    return new resumeJobs (objectInstanceInArray);
   });
 };
 
@@ -28,7 +28,7 @@ resumeJobs.fetchAll = function () {
         if (currentTag === JSON.parse(localStorage.eTag)) {
           parsedLocal = JSON.parse(localStorage.resumeData);
           resumeJobs.loadAll(parsedLocal);
-          workView.indexPage();
+          workView.init();
         }
       }
     });
@@ -37,96 +37,29 @@ resumeJobs.fetchAll = function () {
   }
 };
 
+resumeJobs.allFields = function() {
+  return resumeJobs.all.map(function(differentJobs) { return differentJobs.field;
+  }).reduce(function(fields, field) {
+    if(fields.indexOf(field) === -1) {
+      fields.push(field);
+    }
+    return fields;
+  }, []);
+};
+
 var renderFromJSON = function() {
   $.getJSON('data/resumeData.json', function(data) {
-    console.log('hello');
     resumeJobs.loadAll(data);
     localStorage.resumeData = JSON.stringify(data);
     workView.indexPage();
     $.ajax({
       type: 'GET',
-      url: 'data/resume.json',
+      url: 'data/resumeData.json',
       success: function (data,message, xhr) {
         var eTag = xhr.getResponseHeader('eTag');
         localStorage.eTag = JSON.stringify(eTag);
+        workView.init();
       }
     });
   });
 };
-
-// var work = [];
-//
-// function addWorkHistory(ele) {
-//   for (key in ele) this[key] = ele[key];
-// }
-//
-// addWorkHistory.prototype.toHtml = function() {
-//   var $workTemplateScript = $('#resume-template').html();
-//   var workTemplate = Handlebars.compile($workTemplateScript);
-//   var compiledTemplate = workTemplate(this);
-//   return compiledTemplate;
-// };
-//
-// // adds work history into an array
-// workHistory.forEach(function(ele) {
-//   work.push(new addWorkHistory(ele));
-// });
-//
-// work.forEach(function(a) {
-//   $('#work').append(a.toHtml());
-// });
-//
-// var workView = {};
-//
-// workView.populateFilters = function() {
-//   $('.resume').each(function() {
-//     var val = $(this).find('.work-company').text();
-//     var optionTag = '<option value="' + val + '">' + val + '</option>';
-//     $('#work-filter').append(optionTag);
-//   });
-// };
-//
-// workView.handleJobFilter = function() {
-//   $('#work-filter').on('change', function() {
-//     if($(this).val()) {
-//       $('#work section').hide();
-//       var filterValue = $(this).val();
-//       $("[data-work = '" + filterValue + "']").fadeIn();
-//     } else {
-//       $('#work section').fadeIn();
-//     }
-//   });
-// };
-//
-// function populateHome() {
-//   $('.navigation-options').on('click', '.home', function(e) {
-//     e.preventDefault();
-//     $('article').hide();
-//     $('.profile').fadeIn();
-//   });
-// }
-//
-// function populateAbout() {
-//   $('.navigation-options').on('click', '.about', function(e) {
-//     e.preventDefault();
-//     $('article').hide();
-//     $('.about-me').fadeIn();
-//   });
-// }
-//
-// function populateResume() {
-//   $('.navigation-options').on('click', '.resume-tab', function(e) {
-//     e.preventDefault();
-//     $('article').hide();
-//     $('.work-history').fadeIn();
-//     $('#work').fadeIn();
-//   });
-// }
-//
-// $(document).ready(function() {
-//   populateHome();
-//   populateAbout();
-//   populateResume();
-//   workView.populateFilters();
-//   workView.handleJobFilter();
-// });
