@@ -11,7 +11,7 @@ a {
   width: 100%;
   height: 40px;
   display: block;
-  background-color: #336699;
+  background-color: #931621;
 }
 
 .hamburger-menu {
@@ -21,7 +21,6 @@ a {
   float: right;
   border-left: 1px solid white;
 }
-
 
 .navigation-options {
   display: none;
@@ -44,7 +43,7 @@ a {
   padding-bottom: 30px;
   border-left: 1px solid white;
   border-bottom: 1px solid white;
-  background-color: #336699;
+  background-color: #931621;
 }
 
 li.empty-tab {
@@ -57,7 +56,7 @@ li.empty-tab {
   width: 40px;
   float: right;
   border-style: none;
-  background-color: #336699;
+  background-color: #931621;
   border-bottom: 1px solid white;
 }
 
@@ -81,25 +80,36 @@ li.empty-tab {
 }
 
 .about-me {
+  margin: 5%;
   display: none;
 }
 
-.work-history, #work {
+.hang-glide {
+    margin-right: 5%;
+    max-height: 100%;
+    max-width: 100%;
+}
+
+#resume-view {
   margin-top: 5%;
+  margin: 5%;
+  display: none;
+}
+
+.unique-field {
   display: none;
 }
 
 @media only screen and (min-width: 640px) {
   .profile {
+    display: flex;
+    justify-content: center;
     padding-top: 100px;
   }
   .profile-photo {
-    float: left;
-    vertical-align: middle;
   }
   .profile-description {
-    float: right;
-    vertical-align: middle;
+    padding: 5%;
   }
   .hamburger-menu{
     display: none;

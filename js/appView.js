@@ -4,10 +4,12 @@
   workView.handleJobFilter = function() {
     $('#work-filter').on('change', function() {
       if($(this).val()) {
+        $('.unique-field').hide();
         $('#work section').hide();
         var filterValue = $(this).val();
         $("[data-work = '" + filterValue + "']").fadeIn();
       } else {
+        $('.unique-field').fadeIn();
         $('#work section').fadeIn();
       }
     });
@@ -27,30 +29,26 @@
     });
   };
 
-  function populateHome() {
-    $('.navigation-options').on('click', '.home', function(e) {
+  function populateTemplate(clickedTab, unhideArticle) {
+    $('.navigation-options').on('click', clickedTab, function(e) {
       e.preventDefault();
       $('article').hide();
-      $('.profile').fadeIn();
+      $(unhideArticle).fadeIn();
     });
+  }
+
+  function populateHome() {
+    populateTemplate('.home', '.profile');
   }
 
   function populateAbout() {
-    $('.navigation-options').on('click', '.about', function(e) {
-      e.preventDefault();
-      $('article').hide();
-      $('.about-me').fadeIn();
-    });
+    populateTemplate('.about', '.about-me');
   }
 
   function populateResume() {
-    $('.navigation-options').on('click', '.resume-tab', function(e) {
-      e.preventDefault();
-      $('article').hide();
-      $('.work-history').fadeIn();
-      $('#work').fadeIn();
-      $('.unique-field').fadeIn();
-    });
+    populateTemplate('.resume-tab', '#resume-view');
+    $('.unique-field').fadeIn();
+
   }
 
   workView.initFilter = function() {
