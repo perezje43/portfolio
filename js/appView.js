@@ -49,8 +49,16 @@
       $('article').hide();
       $('.work-history').fadeIn();
       $('#work').fadeIn();
+      $('.unique-field').fadeIn();
     });
   }
+
+  workView.initFilter = function() {
+    var template = Handlebars.compile($('#field-template').html());
+    resumeJobs.allFields().forEach(function(field) {
+      $('.field-history').append(template(field));
+    });
+  };
 
   workView.init = function () {
     populateHome();
@@ -59,6 +67,7 @@
     workView.indexPage();
     workView.populateFilters();
     workView.handleJobFilter();
+    workView.initFilter();
   };
   module.workView = workView;
 })(window);

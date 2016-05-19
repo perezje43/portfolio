@@ -38,8 +38,10 @@ resumeJobs.fetchAll = function () {
 };
 
 resumeJobs.allFields = function() {
-  return resumeJobs.all.map(function(differentJobs) { return differentJobs.field;
-  }).reduce(function(fields, field) {
+  return resumeJobs.all.map(function(differentJobs) {
+    return differentJobs.field;
+  })
+  .reduce(function(fields, field) {
     if(fields.indexOf(field) === -1) {
       fields.push(field);
     }

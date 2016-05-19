@@ -15,6 +15,10 @@
       </section>
     </script>
 
+    <script id="field-template" type="text/x-handlebars-template">
+    <li><strong>{{this}}</strong></li>
+  </script>
+
   </head>
 
   <body>
@@ -56,6 +60,13 @@
       <select id="work-filter">
         <option value="">-- Filter by Company --</option>
       </select>
+    </article>
+
+    <article class="unique-field"></>
+      <p><em>Fields I've Worked In</em></p>
+      <ul class="field-history">
+        <!-- DONE: Setup an unordered list to later append to with some stats for each author -->
+      </ul>
     </article>
 
     <article id="work">
