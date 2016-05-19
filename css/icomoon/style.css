@@ -25,43 +25,41 @@
 }
 
 #icon {
-      font-size: 32px;
-      padding: 5px;
+  font-size: 32px;
+  padding: 5px;
+  color: #007EA7;
+}
+
+#icon:hover {
+  color: #003249;
 }
 
 .icon-mail4:before {
     content: "\ea86";
-    color: grey;
 }
 
 .icon-facebook2:before {
     content: "\ea91";
     font-size: 32px;
-    color: grey;
     padding: 5px;
 }
 
 .icon-instagram:before {
     content: "\ea92";
-    color: grey;
 }
 
 .icon-twitter:before {
     content: "\ea96";
-    color: grey;
 }
 
 .icon-vimeo2:before {
     content: "\eaa1";
-    color: grey;
 }
 
 .icon-github:before {
     content: "\eab0";
-    color: grey;
 }
 
 .icon-linkedin:before {
     content: "\eac9";
-    color: grey;
 }

@@ -48,7 +48,6 @@
   function populateResume() {
     populateTemplate('.resume-tab', '#resume-view');
     $('.unique-field').fadeIn();
-
   }
 
   workView.initFilter = function() {
