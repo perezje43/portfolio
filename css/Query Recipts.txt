@@ -1,0 +1,115 @@
+#Which AE provisioned accounts
+SELECT om.phone_number, user.email, omd.* FROM provision.org_mapping AS om
+INNER JOIN provision.org_mapping_detail AS omd ON omd.org_mapping_id = om.id
+INNER JOIN provision.user AS `user` ON user.id = om.user_id
+WHERE user.email LIKE '%jhayden%';
+
+#Find accounts with a certain name
+SELECT om.phone_number, omd.* FROM provision.org_mapping_detail AS omd
+INNER JOIN provision.org_mapping AS om ON om.id = omd.org_mapping_id
+WHERE omd.contact_email LIKE '%quirkcar%'
+
+#All Active lines
+SELECT om.phone_number, IF(du.user_status_id IN (-1, 1), "active", "deacted") cloud_status, omd.display_name, u.id creator_id, CONCAT(u.first_name, " ",u.last_name) creator, MAX(bt.date_created) "last successful charge"
+FROM provision.org_mapping om
+LEFT JOIN provision.user u ON u.id = om.user_id
+INNER JOIN zw_dw.dm_user du ON du.user_id = om.zw_user_id 
+LEFT JOIN provision.org_mapping_detail omd ON om.id = omd.org_mapping_id
+LEFT JOIN dan.billing_subscription bs ON om.zw_user_id = bs.user_id AND bs.status = "active"
+LEFT JOIN dan.billing_transaction bt ON bt.user_id = om.zw_user_id AND `action` = "charge.succeeded"
+WHERE org_customer_id = 1 AND om.status = "Active"
+#and u.id = 3
+GROUP BY om.id
+LIMIT 1000000;
+
+#Org customer ids within an org id
+SELECT * FROM provision.org_customer
+WHERE org_id = 41;
+
+#EMAIL RECEIPTS
+SELECT
+om.id AS org_mapping_id,
+om.phone_number,
+om.status,
+omd.email_receipt
+FROM provision.org_mapping AS om
+INNER JOIN provision.org_mapping_detail AS omd ON om.id = omd.org_mapping_id
+WHERE om.phone_number = '5193367962';
+
+#Take the org mapping ID from the first query to update the email_receipt column to a 1:
+
+SELECT
+org_mapping_id,
+email_receipt
+FROM provision.org_mapping_detail
+WHERE org_mapping_id = '105398';
+
+
+
+#Check usage for non volume accounts
+SELECT om.phone_number AS "Phone Number", date(date_inserted) AS "Usage since", CONCAT(du.first_name, ' ', du.last_name) AS "Name", Date(om.date_created) AS "Created", omb.feature_package AS "Package", SUM(message_mo + text_line_mo + zz_mo) AS "MO", SUM(text_line_zo + zz_zo + message_ar) AS "ZO", SUM(message_ar) AS AutoReply, Sum(new_contact_cnt) AS Contacts
+FROM provision.org_mapping AS om
+INNER JOIN provision.org AS o ON om.org_id = o.id
+INNER JOIN zw_dw.dm_user AS du ON du.user_id = om.zw_user_id
+INNER JOIN provision.org_mapping_billing as omb on om.org_mapping_billing_id = omb.id
+LEFT JOIN zw_dw.ft_user_stat_daily AS fusd ON om.zw_user_id = fusd.user_id 
+#AND date_inserted > "2014-07-16 00:00:00"
+WHERE om.phone_number in(4053502550, 9403127347, 5804771193)
+AND du.user_status_id IN (-1, 1)
+GROUP BY om.phone_number;
+
+#Check usage for volume accounts
+SELECT om.phone_number AS "Phone Number", date(date_inserted) AS "Usage since", CONCAT(du.first_name, ' ', du.last_name) AS "Name", Date(om.date_created) AS "Created", omb.feature_package AS "Package", SUM(message_mo + text_line_mo + zz_mo) AS "MO", SUM(text_line_zo + zz_zo + message_ar) AS "ZO", SUM(message_ar) AS AutoReply, Sum(new_contact_cnt) AS Contacts
+FROM provision.org_mapping AS om
+INNER JOIN provision.org AS o ON om.org_id = o.id
+INNER JOIN zw_dw.dm_user AS du ON du.user_id = om.zw_user_id
+INNER JOIN provision.org_mapping_billing as omb on om.org_mapping_billing_id = omb.id
+LEFT JOIN zw_dw.ft_user_stat_daily AS fusd ON om.zw_user_id = fusd.user_id 
+#AND date_inserted > "2014-07-16 00:00:00"
+WHERE om.org_customer_id = 87
+AND du.user_status_id IN (-1, 1)
+GROUP BY om.phone_number;
+
+
+SELECT * FROM provision.`sales_associate` AS sales
+INNER JOIN provision.org_mapping AS map ON map.`sales_associate_id` = sales.`id`
+WHERE map.`phone_number` = '7048842236'
+
+
+
+#Receipt Status
+SELECT
+om.id AS org_mapping_id,
+om.phone_number,
+om.status,
+omd.email_receipt
+FROM provision.org_mapping AS om
+INNER JOIN provision.org_mapping_detail AS omd ON om.id = omd.org_mapping_id
+WHERE om.phone_number in( '8668683500', '8663260193', '2624560321', '8887653615', '7045223866');
+
+
+
+#Volume Billing Aging
+select bill.company_name, inv.*
+, sum(itm.cost*itm.quantity) from provision.org_invoice as inv
+inner join provision.org_billing as bill on bill.id = inv.org_billing_id
+inner join provision.org_invoice_item as itm on itm.org_invoice_id = inv.id
+#where inv.status = 0
+group by inv.id;
+
+
+#All Current Invoices
+select bill.company_name, inv.*
+, sum(itm.cost*itm.quantity) from provision.org_invoice as inv
+inner join provision.org_billing as bill on bill.id = inv.org_billing_id
+inner join provision.org_invoice_item as itm on itm.org_invoice_id = inv.id
+where inv.date_created >= "2015-06-01 00:00:00"
+group by inv.id;
+
+#Volume Account Owner
+SELECT sa.first_name, sa.last_name, bill.* FROM provision.org_billing AS bill
+INNER JOIN provision.sales_associate AS sa ON sa.id = bill.sales_associate_id;
+
+
+
+

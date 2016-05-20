@@ -4,6 +4,7 @@ body {
 
 a {
   text-decoration: none;
+  color: white;
 }
 
 .navigation {
@@ -11,7 +12,7 @@ a {
   width: 100%;
   height: 40px;
   display: block;
-  background-color: #336699;
+  background-color: #007EA7;
 }
 
 .hamburger-menu {
@@ -21,7 +22,6 @@ a {
   float: right;
   border-left: 1px solid white;
 }
-
 
 .navigation-options {
   display: none;
@@ -44,7 +44,7 @@ a {
   padding-bottom: 30px;
   border-left: 1px solid white;
   border-bottom: 1px solid white;
-  background-color: #336699;
+  background-color: #007EA7;
 }
 
 li.empty-tab {
@@ -57,7 +57,7 @@ li.empty-tab {
   width: 40px;
   float: right;
   border-style: none;
-  background-color: #336699;
+  background-color: #007EA7;
   border-bottom: 1px solid white;
 }
 
@@ -74,6 +74,7 @@ li.empty-tab {
 
 .profile-name {
   text-align: center;
+  font-size: 30px;
 }
 
 .profile-occupation {
@@ -81,25 +82,40 @@ li.empty-tab {
 }
 
 .about-me {
+  margin: 5%;
   display: none;
 }
 
-.work-history, #work {
+.hang-glide {
+    margin-right: 5%;
+    max-height: 100%;
+    max-width: 100%;
+}
+
+#resume-view {
   margin-top: 5%;
+  margin: 5%;
+  display: none;
+}
+
+h1 a {
+  color: black;
+}
+
+.unique-field {
   display: none;
 }
 
 @media only screen and (min-width: 640px) {
   .profile {
+    display: flex;
+    justify-content: center;
     padding-top: 100px;
   }
   .profile-photo {
-    float: left;
-    vertical-align: middle;
   }
   .profile-description {
-    float: right;
-    vertical-align: middle;
+    padding: 5%;
   }
   .hamburger-menu{
     display: none;
@@ -108,12 +124,13 @@ li.empty-tab {
     position: fixed;
   }
   .navigation-options {
-    display: inline;
-    width: 100%;
+    display: flex;
+    justify-content: space-between;
     height: auto;
   }
   .navigation-options li {
-    display: inline;
-    padding: 0;
+    border: none;
+    text-align: center;
+    padding: 1%;
   }
 }
