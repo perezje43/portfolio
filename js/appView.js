@@ -45,6 +45,10 @@
     populateTemplate('.about', '.about-me');
   }
 
+  function populatePortfolio() {
+    populateTemplate('.portfolio', '.portfolio-info');
+  }
+
   function populateResume() {
     populateTemplate('.resume-tab', '#resume-view');
     $('.unique-field').fadeIn();
@@ -60,6 +64,7 @@
   workView.init = function () {
     populateHome();
     populateAbout();
+    populatePortfolio();
     populateResume();
     workView.indexPage();
     workView.populateFilters();

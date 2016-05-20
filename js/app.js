@@ -51,19 +51,18 @@
   };
 
   var renderFromJSON = function() {
-    $.getJSON('data/resumeData.json', function(data) {
+    $.getJSON('data/resumeData.json', function(data, message, xhr) {
       resumeJobs.loadAll(data);
       localStorage.resumeData = JSON.stringify(data);
-      // workView.indexPage();
-      $.ajax({
-        type: 'GET',
-        url: 'data/resumeData.json',
-        success: function (data,message, xhr) {
-          var eTag = xhr.getResponseHeader('eTag');
-          localStorage.eTag = JSON.stringify(eTag);
-          workView.init();
-        }
-      });
+      // $.ajax({
+      //   type: 'GET',
+      //   url: 'data/resumeData.json',
+      //   success: function (data,message, xhr) {
+      var eTag = xhr.getResponseHeader('eTag');
+      localStorage.eTag = JSON.stringify(eTag);
+      workView.init();
+      //   }
+      // });
     });
   };
   module.resumeJobs = resumeJobs;
