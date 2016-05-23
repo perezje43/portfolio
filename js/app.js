@@ -67,3 +67,19 @@
   };
   module.resumeJobs = resumeJobs;
 })(window);
+
+var mealsPerDay = [5, 4, 3, 6, 2, 4, 3, 4, 5, 1];
+var tooHungryDay = 0;
+var runningTotalPerDay = 0;
+
+for(var i = 0; i < mealsPerDay.length; i++){
+  var averagePerDay = 0;
+  runningTotalPerDay += mealsPerDay[i];
+  averagePerDay += runningTotalPerDay / (i+1);
+  if(averagePerDay >= 4) {
+    tooHungryDay++;
+  }else{
+    tooHungryDay;
+    break;
+  }
+}
