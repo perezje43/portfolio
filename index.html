@@ -16,9 +16,12 @@
     </script>
 
     <script id="field-template" type="text/x-handlebars-template">
-    <li><strong>{{this}}</strong></li>
+    <li>{{this}}</li>
   </script>
 
+  <script id="project-template" type="text/x-handlebars-template">
+
+  </script>
   </head>
 
   <body>
@@ -27,10 +30,10 @@
       <div class="hamburger">
         <img src="assets/hamburger.png" class="hamburger-menu"/>
         <ul class="navigation-options">
-          <li class="home"><a href="#">Home</a></li>
-          <li class="about"><a href="#">About</a></li>
-          <li class="portfolio"><a href="#">Portfolio</a></li>
-          <li class="resume-tab"><a href="#">Resume</a></li>
+          <li class="home"><a href="/home">Home</a></li>
+          <li class="about"><a href="/about">About</a></li>
+          <li class="portfolio"><a href="/portfolio">Portfolio</a></li>
+          <li class="resume-tab"><a href="/resume">Resume</a></li>
           <li class="empty-tab"></li>
         </ul>
       </div>
@@ -58,11 +61,14 @@
       <p>Pulling teeth i also believe it's important for every member to be involved and invested in our company and this is one way to do so draw a line in the sand first-order optimal strategies, data-point market-facing. Run it up the flagpole, ping the boss and circle back obviously and put your feelers out going forward t-shaped individual. New economy deliverables and message the initiative so hit the ground running vertical integration, so table the discussion . Quick win proceduralize, so shoot me an email and out of the loop we need to have a Come to Jesus meeting with Phil about his attitude, and even dead cats bounce, organic growth. Obviously sacred cow meeting assassin, even dead cats bounce. Can I just chime in on that one. Cross sabers idea shower, but strategic fit. Waste of resources are there any leftovers in the kitchen? level the playing field pipeline, and red flag market-facing.</p>
     </article>
 
-    <!-- <article class="portfolio">
-      <img class="final-201" src="assets/rockpaperscissors.png"/><a href="http://jmalesh.github.io/final-project/"></a>
-      <img class="bus-mall" src="assets/busmall.png"/><a href="http://perezje43.github.io/bus-mall"></a>
-      <img class="salmon-cookies" src="assets/salmoncookies.png"/><a href="http://perezje43.github.io/Salmon-Cookies"></a>
-    </article> -->
+    <article class="portfolio-info">
+      <img src="assets/rockpaperscissors.png" onmouseover="this.src='assets/finalproject-code.png'" onmouseout="this.src='assets/rockpaperscissors.png'" />
+      <img class="bus-mall" src="assets/busmall.png" onmouseover="this.src='assets/busmall-code.png'" onmouseout="this.src='assets/busmall.png'"/>
+      <img class="salmon-cookies" src="assets/salmoncookies.png" onmouseover="this.src='assets/salmoncookies-code.png'" onmouseout="this.src='assets/salmoncookies.png'"/>
+      <a href="http://jmalesh.github.io/final-project/"></a>
+      <a href="http://perezje43.github.io/bus-mall"></a>
+      <a href="http://perezje43.github.io/Salmon-Cookies"></a>
+    </article>
 
     <article id="resume-view">
       <section class="work-history">
@@ -71,7 +77,7 @@
         </select>
       </section>
       <section class="unique-field"></>
-        <p><em>Fields I've Worked In</em></p>
+        <p><strong>Fields I've Worked In:</strong></p>
         <ul class="field-history">
         </ul>
       </section>
@@ -80,9 +86,12 @@
 
     <script src="https://code.jquery.com/jquery-2.2.3.min.js" integrity="sha256-a23g1Nt4dtEYOj7bR+vTu7+T8VP13humZFBJNIYoEJo=" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/handlebarsjs/4.0.5/handlebars.min.js"></script>
-    <!-- <script src="js/resume.js"></script> -->
-    <script src="js/app.js"></script>
-    <script src="js/appView.js"></script>
-    <script>resumeJobs.fetchAll();</script>
+    <script src="https://cdn.rawgit.com/visionmedia/page.js/master/page.js"></script>
+    <!-- <script src="js/model/resume.js"></script> -->
+    <script src="js/model/app.js"></script>
+    <script src="js/view/appView.js"></script>
+    <script src="js/controller/resumeController.js"></script>
+    <script src="js/controller/routes.js"></script>
+    <!-- <script>resumeJobs.fetchAll();</script> -->
   </body>
 </html>
