@@ -1,16 +1,11 @@
 (function(module) {
   var repos = {};
   repos.all = [];
+  
   repos.requestRepos = function(callback) {
-    $.ajax({
-      url: 'https://api.github.com/users/perezje43/repos' + '?per_page=10' + '&sort=updated',
-      type: 'GET',
-      headers: {'Authorization': 'token ' + gitHubToken},
-      success: function(data, message, xhr) {
-        repos.all = data;
-        callback();
-      }
-    });
+    $.get('/github/users/perezje43/repos' + '?per_page=15' + '&sort=updated').done(function(data) {
+      repos.all = data;
+    }).done(callback);
   };
 
   repos.with = function(attr) {
