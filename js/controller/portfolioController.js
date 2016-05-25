@@ -3,6 +3,7 @@
 
   portfolioController.index = function() {
     workView.populatePortfolio();
+    repos.requestRepos(repoView.index);
     $('article').hide();
     $('.portfolio-info').fadeIn();
   };

@@ -2,7 +2,7 @@ body {
   margin: 0;
 }
 
-a {
+.navigation a {
   text-decoration: none;
   color: white;
 }
@@ -103,6 +103,10 @@ li.empty-tab {
   padding-top: 5%;
   display: none;
   text-align: center;
+}
+
+.portfolio-info img:hover {
+    opacity: 0.6;
 }
 
 .portfolio-info img {

@@ -20,14 +20,16 @@
   </script>
 
   <script id="project-template" type="text/x-handlebars-template">
-    <a href="{{html_url}}"><h3>{{name}}</h3></a>
-    <p>Description: {{description}}</p>
-    <p>Language: {{language}}</p>
-    <p>Created: {{created_at}}</p>
-    <p>Last updated: {{updated_at}}</p>
-    {{#if watchers_count}}
-      <p>{{watchers}} watching this repo</p>
-    {{/if}}
+    <li>
+      <a href="{{html_url}}"><h3>{{name}}</h3></a>
+      <p>Description: {{description}}</p>
+      <p>Language: {{language}}</p>
+      <p>Created: {{created_at}}</p>
+      <p>Last updated: {{updated_at}}</p>
+      {{#if watchers_count}}
+        <p>{{watchers}} watching this repo</p>
+      {{/if}}
+    </li>
   </script>
   </head>
 
@@ -72,9 +74,10 @@
       <img src="assets/rockpaperscissors.png" onmouseover="this.src='assets/finalproject-code.png'" onmouseout="this.src='assets/rockpaperscissors.png'" />
       <img class="bus-mall" src="assets/busmall.png" onmouseover="this.src='assets/busmall-code.png'" onmouseout="this.src='assets/busmall.png'"/>
       <img class="salmon-cookies" src="assets/salmoncookies.png" onmouseover="this.src='assets/salmoncookies-code.png'" onmouseout="this.src='assets/salmoncookies.png'"/>
-      <a href="http://jmalesh.github.io/final-project/"></a>
-      <a href="http://perezje43.github.io/bus-mall"></a>
-      <a href="http://perezje43.github.io/Salmon-Cookies"></a>
+      <h1>Below are my past projects</h1>
+      <ul>
+        
+      </ul>
     </article>
 
     <article id="resume-view">
