@@ -34,19 +34,19 @@
     $(unhideArticle).fadeIn();
   }
 
-  function populateHome() {
-    populateTemplate('.home', '.profile');
-  }
+  workView.populateHome = function () {
+    populateTemplate('.profile');
+  };
 
-  function populateAbout() {
+  workView.populateAbout = function() {
     populateTemplate('.about', '.about-me');
-  }
+  };
 
-  function populatePortfolio() {
+  workView.populatePortfolio = function () {
     populateTemplate('.portfolio', '.portfolio-info');
-  }
+  };
 
-  workView.populateResume = function() {
+  workView.populateResume = function () {
     populateTemplate('#resume-view');
     $('.unique-field').fadeIn();
   };
@@ -59,13 +59,15 @@
   };
 
   workView.init = function () {
-    populateHome();
-    populateAbout();
-    populatePortfolio();
+    workView.populateHome();
+    workView.populateAbout();
+    workView.populatePortfolio();
+    workView.populateResume();
     workView.indexPage();
     workView.populateFilters();
     workView.handleJobFilter();
     workView.initFilter();
   };
+
   module.workView = workView;
 })(window);
