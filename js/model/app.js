@@ -27,7 +27,6 @@
         success: function (data, message, xhr) {
           var currentTag = xhr.getResponseHeader('eTag');
           if (currentTag === JSON.parse(localStorage.eTag)) {
-            console.log(currentTag + JSON.parse(localStorage.eTag));
             parsedLocal = JSON.parse(localStorage.resumeData);
             resumeJobs.loadAll(parsedLocal);
             workView.init();
