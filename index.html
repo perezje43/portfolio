@@ -20,7 +20,14 @@
   </script>
 
   <script id="project-template" type="text/x-handlebars-template">
-
+    <a href="{{html_url}}"><h3>{{name}}</h3></a>
+    <p>Description: {{description}}</p>
+    <p>Language: {{language}}</p>
+    <p>Created: {{created_at}}</p>
+    <p>Last updated: {{updated_at}}</p>
+    {{#if watchers_count}}
+      <p>{{watchers}} watching this repo</p>
+    {{/if}}
   </script>
   </head>
 
@@ -30,7 +37,7 @@
       <div class="hamburger">
         <img src="assets/hamburger.png" class="hamburger-menu"/>
         <ul class="navigation-options">
-          <li class="home"><a href="/home">Home</a></li>
+          <li class="home"><a href="/">Home</a></li>
           <li class="about"><a href="/about">About</a></li>
           <li class="portfolio"><a href="/portfolio">Portfolio</a></li>
           <li class="resume-tab"><a href="/resume">Resume</a></li>
@@ -84,14 +91,18 @@
       <section id="work"></section>
     </article>
 
+    <script src="js/model/gitHubToken.js"></script>
     <script src="https://code.jquery.com/jquery-2.2.3.min.js" integrity="sha256-a23g1Nt4dtEYOj7bR+vTu7+T8VP13humZFBJNIYoEJo=" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/handlebarsjs/4.0.5/handlebars.min.js"></script>
     <script src="https://cdn.rawgit.com/visionmedia/page.js/master/page.js"></script>
-    <!-- <script src="js/model/resume.js"></script> -->
+    <script src="js/model/repo.js"></script>
+    <script src="js/view/repoView.js"></script>
     <script src="js/model/app.js"></script>
     <script src="js/view/appView.js"></script>
+    <script src="js/controller/homeController.js"></script>
     <script src="js/controller/resumeController.js"></script>
+    <script src="js/controller/aboutController.js"></script>
+    <script src="js/controller/portfolioController.js"></script>
     <script src="js/controller/routes.js"></script>
-    <!-- <script>resumeJobs.fetchAll();</script> -->
   </body>
 </html>
